@@ -1,0 +1,30 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    container_name: db
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: dbname
+      MYSQL_USER: dbuser
+      MYSQL_PASSWORD: dbpassword
+  php:
+    build: ./php
+    container_name: php
+    volumes:
+      - ./public:/usr/local/apache2/htdocs
+    depends_on:
+      - db
+  web:
+    image: httpd:2.4
+    container_name: web
+    ports:
+      - "80:80"
+    volumes:
+      - ./public:/usr/local/apache2/htdocs
+      - ./httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ./httpd-vhosts.conf:/usr/local/apache2/conf/extra/httpd-vhosts.conf
+    depends_on:
+      - php

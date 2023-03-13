@@ -12,11 +12,11 @@ $password = 'dbpassword';
 try{
     $dbh = new PDO($dsn, $user, $password);
 
-    print('接続に成功しました。<br>');
+    print('<div>接続に成功しました。</div>');
 
     $sql = 'select * from users';
     foreach ($dbh->query($sql) as $row) {
-        print($row['name'].', '.$row['age'].', '.$row['gender'].'<br>');
+        print('<p class="list">' . $row['name'].', '.$row['age'].', '.$row['gender'].'</p>');
     }
 }catch (PDOException $e){
     print('Error:'.$e->getMessage());

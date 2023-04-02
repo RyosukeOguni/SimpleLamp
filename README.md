@@ -1,6 +1,11 @@
 # SimpleLamp
 最小のPHP,Apache,MySQLコンテナ構成
 
+## Version
+- PHP:7.4
+- MySQL:5.7
+- httpd:2.4
+
 ## Apache
 ### httpd.conf
 - mod_proxy.soを有効化
